@@ -9,6 +9,7 @@ const ProfileGallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState({});
   let [value, setValue] = useState("");
+  let [loading, setLoading] = useState(true);
 
   const filterUser = (users) => {
     return users.filter((user) =>
@@ -36,12 +37,14 @@ const ProfileGallery = () => {
 
         setUsers(fetchedUsers);
         setFilteredUsers(fetchedUsers);
-      });
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   useEffect(() => {
     setFilteredUsers(filterUser(users));
-  }, [value]);
+  }, [value, users]);
 
   return (
     <>
@@ -56,11 +59,17 @@ const ProfileGallery = () => {
           setValue={setValue}
         />
         <div className="w-full grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredUsers.length === 0 ? (
+          {loading ? (
             <div className="col-span-full flex justify-center items-center mt-24">
               <div className="w-8 h-8 border-4 border-blue-500 border-solid rounded-full border-t-transparent animate-spin"></div>
               <h2 className="text-white text-xl font-semibold ms-2">
                 Fetching Data....
+              </h2>
+            </div>
+          ) : filteredUsers.length === 0 ? (
+            <div className="col-span-full flex justify-center items-center mt-24">
+              <h2 className="text-white text-xl font-semibold ms-2">
+                No Users Found.
               </h2>
             </div>
           ) : (
