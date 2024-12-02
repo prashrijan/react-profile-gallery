@@ -8,7 +8,7 @@ const ProfileViewModal = ({ userData, closeModal }) => {
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
         aria-hidden="true"
       >
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center p-4">
+        <div className="w-96 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center p-4">
           <img
             className="w-40 h-40 object-cover rounded-full"
             src={image}
