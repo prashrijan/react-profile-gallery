@@ -22,6 +22,8 @@ const ProfileGallery = () => {
           }))
         )
       );
+
+    console.log("I am fired once");
   }, []);
 
   return (
