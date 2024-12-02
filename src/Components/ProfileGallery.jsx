@@ -41,7 +41,7 @@ const ProfileGallery = () => {
 
   useEffect(() => {
     setFilteredUsers(filterUser(users));
-  }, [users, value]);
+  }, [value]);
 
   return (
     <>
